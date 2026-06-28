@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MONADO 8203</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+    }
+  </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+
+  <header class="bg-[#1e1b4b] text-white px-8 py-4 flex justify-between items-center shadow-md">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-bold text-sm text-white shadow-inner">M</div>
+      <span class="text-xl font-bold tracking-wider text-blue-400">MONADO <span class="text-white text-sm font-normal">8203</span></span>
+    </div>
+    
+    <nav class="flex space-x-1">
+      <button onclick="switchMainTab('dashboard')" id="btn-nav-dashboard" class="px-6 py-2 rounded-full font-medium text-sm transition-all bg-blue-600 text-white shadow">
+        Dashboard
+      </button>
+      <button onclick="switchMainTab('worksheet')" id="btn-nav-worksheet" class="px-6 py-2 rounded-full font-medium text-sm transition-all text-gray-300 hover:text-white">
+        Worksheet
+      </button>
+    </nav>
+
+    <div class="flex items-center space-x-3 text-right">
+      <div>
+        <p class="text-xs font-bold text-gray-200">Admin MONADO</p>
+        <p class="text-[10px] text-gray-400">bps8203@bps.go.id</p>
+      </div>
+      <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-xs font-semibold">ADM</div>
+    </div>
+  </header>
+
+  <main class="flex-1 overflow-y-auto p-6">
+    
+    <section id="view-dashboard" class="space-y-6 block">
+      <div class="bg-gradient-to-r from-indigo-900 via-blue-800 to-cyan-600 rounded-2xl p-8 text-white shadow-lg text-center relative overflow-hidden">
+        <p class="text-xs uppercase tracking-widest text-cyan-300 font-semibold mb-1">System Integrated Monitoring</p>
+        <h1 class="text-4xl font-extrabold tracking-tight mb-2">MONADO 8203</h1>
+        <p class="text-sm text-indigo-100 max-w-xl mx-auto italic">Digital Monitoring Worksheet — Anggaran, Administrasi, dan Progres Pekerjaan Teknis BPS Kabupaten Kepulauan Sula</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Total Anggaran Realisasi</p>
+          <p class="text-4xl font-extrabold text-indigo-900">74.2%</p>
+          <div class="w-full bg-gray-100 h-2 rounded-full mt-4 overflow-hidden">
+            <div class="bg-indigo-600 h-full rounded-full" style="width: 74.2%"></div>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Total Kegiatan Selesai</p>
+          <p class="text-4xl font-extrabold text-emerald-600">12 / 18</p>
+          <div class="w-full bg-gray-100 h-2 rounded-full mt-4 overflow-hidden">
+            <div class="bg-emerald-500 h-full rounded-full" style="width: 66.6%"></div>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Ketepatan Waktu</p>
+          <p class="text-4xl font-extrabold text-cyan-600">91%</p>
+          <div class="w-full bg-gray-100 h-2 rounded-full mt-4 overflow-hidden">
+            <div class="bg-cyan-500 h-full rounded-full" style="width: 91%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-worksheet" class="hidden h-full flex flex-col space-y-6">
+      
+      <div id="worksheet-menu-grid" class="space-y-6 block">
+        <div>
+          <h2 class="text-xl font-bold text-gray-800">WORKSHEET</h2>
+          <p class="text-xs text-gray-400 uppercase tracking-wider">Sentralisasi Dokumen Perencanaan dan Anggaran Tim</p>
+        </div>
+
+        <div>
+          <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-3">Administrasi Utama</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div onclick="openGoogleSheet('buku_kendali')" class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center cursor-pointer hover:shadow-md transition-all group">
+              <div class="flex items-center space-x-4">
+                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition-all">📄</div>
+                <div>
+                  <h3 class="font-bold text-gray-800 text-sm">BUKU KENDALI SURAT KELUAR</h3>
+                  <p class="text-xs text-gray-400">NOMOR SURAT DIGITAL</p>
+                </div>
+              </div>
+              <span class="text-gray-300 group-hover:text-indigo-600 font-bold transition-all">&rarr;</span>
+            </div>
+            <div onclick="openGoogleSheet('monado_pa')" class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center cursor-pointer hover:shadow-md transition-all group">
+              <div class="flex items-center space-x-4">
+                <div class="p-3 bg-cyan-50 text-cyan-600 rounded-xl group-hover:bg-cyan-600 group-hover:text-white transition-all">📊</div>
+                <div>
+                  <h3 class="font-bold text-gray-800 text-sm">MONADO PA</h3>
+                  <p class="text-xs text-gray-400">PERENCANAAN & ANGGARAN</p>
+                </div>
+              </div>
+              <span class="text-gray-300 group-hover:text-cyan-600 font-bold transition-all">&rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-3">Monitoring Tim (MONADO)</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            <div onclick="openGoogleSheet('sosial')" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center cursor-pointer flex flex-col items-center justify-between h-40">
+              <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-lg text-gray-500">👥</div>
+              <div class="mb-2">
+                <p class="text-[9px] text-cyan-500 font-bold tracking-widest uppercase">Monado</p>
+                <p class="text-sm font-bold text-gray-700">SOSIAL</p>
+              </div>
+              <span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Access View</span>
+            </div>
+            <div onclick="openGoogleSheet('produksi')" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center cursor-pointer flex flex-col items-center justify-between h-40">
+              <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-lg text-gray-500">🏗️</div>
+              <div class="mb-2">
+                <p class="text-[9px] text-cyan-500 font-bold tracking-widest uppercase">Monado</p>
+                <p class="text-sm font-bold text-gray-700">PRODUKSI</p>
+              </div>
+              <span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Access View</span>
+            </div>
+            <div onclick="openGoogleSheet('distribusi')" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center cursor-pointer flex flex-col items-center justify-between h-40">
+              <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-lg text-gray-500">📦</div>
+              <div class="mb-2">
+                <p class="text-[9px] text-cyan-500 font-bold tracking-widest uppercase">Monado</p>
+                <p class="text-sm font-bold text-gray-700">DISTRIBUSI</p>
+              </div>
+              <span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Access View</span>
+            </div>
+            <div onclick="openGoogleSheet('nwas')" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center cursor-pointer flex flex-col items-center justify-between h-40">
+              <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-lg text-gray-500">📈</div>
+              <div class="mb-2">
+                <p class="text-[9px] text-cyan-500 font-bold tracking-widest uppercase">Monado</p>
+                <p class="text-sm font-bold text-gray-700">NWAS</p>
+              </div>
+              <span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Access View</span>
+            </div>
+            <div onclick="openGoogleSheet('ipds')" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center cursor-pointer flex flex-col items-center justify-between h-40">
+              <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-lg text-gray-500">💻</div>
+              <div class="mb-2">
+                <p class="text-[9px] text-cyan-500 font-bold tracking-widest uppercase">Monado</p>
+                <p class="text-sm font-bold text-gray-700">IPDS</p>
+              </div>
+              <span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Access View</span>
+            </div>
+            <div onclick="openGoogleSheet('umum')" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center cursor-pointer flex flex-col items-center justify-between h-40">
+              <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-lg text-gray-500">🏢</div>
+              <div class="mb-2">
+                <p class="text-[9px] text-cyan-500 font-bold tracking-widest uppercase">Monado</p>
+                <p class="text-sm font-bold text-gray-700">UMUM</p>
+              </div>
+              <span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Access View</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="spreadsheet-frame-container" class="hidden flex-1 flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-[80vh]">
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+          <div class="flex items-center space-x-4">
+            <button onclick="closeGoogleSheet()" class="px-4 py-2 bg-gray-200 text-gray-700 text-xs font-bold rounded-lg hover:bg-gray-300 transition-all">
+              &larr; KEMBALI
+            </button>
+            <div>
+              <h3 id="current-sheet-title" class="font-bold text-gray-800 text-sm">MONADO PA</h3>
+              <p class="text-[10px] text-gray-400 uppercase tracking-wider">MONITORING PERENCANAAN & ANGGARAN</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-semibold flex items-center gap-1">
+              <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> CONNECTED
+            </span>
+            <a id="external-sheet-link" href="#" target="_blank" class="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition-all">
+              OPEN GOOGLE SHEET &nearr;
+            </a>
+          </div>
+        </div>
+        <div class="flex-1 bg-gray-100 relative">
+          <iframe id="sheet-iframe" src="" class="w-full h-full border-0" allow="autoplay"></iframe>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="bg-white border-t border-gray-100 py-3 text-center text-[11px] text-gray-400">
+    <p class="font-bold text-gray-600">&copy; 2026 BADAN PUSAT STATISTIK KABUPATEN KEPULAUAN SULA</p>
+    <p>Jl. Yos Sudarso No.KM.10, Pohea, Kec. Sanana Utara, Kabupaten Kepulauan Sula, Maluku Utara</p>
+  </footer>
+
+  <script>
+    // Kamus data URL Spreadsheet untuk masing-masing tim/menu
+    // Silakan ganti ID_SPREADSHEET sesuai dengan file riil di Google Drive Anda.
+    const sheetUrls = {
+      buku_kendali: "https://docs.google.com/spreadsheets/d/1GbKcD8gHfn8p8DVMWfAFwfrbiyKhwd2HftJUEpb4K4Y/edit?usp=sharing?rm=minimal",
+      monado_pa: 
+"https://docs.google.com/spreadsheets/d/1IS4AHGn7DBxK2P0-U9y7arP6oBtdUIhrSk8I_U6JVkc/edit?usp=sharing?rm=minimal",
+      sosial: "https://docs.google.com/spreadsheets/d/1FZiU6WVOv91ccgxtgPUuebkROJRTSX60Gnr3qoqqwgo/edit?usp=sharing?rm=minimal",
+      produksi: "https://docs.google.com/spreadsheets/d/1w00T_qKfxvHWGrawZbmLrVqZVTKaDm5-VRXnWgtJpxE/edit?usp=sharing?rm=minimal",
+      distribusi: "https://docs.google.com/spreadsheets/d/1tssAvuy748zKmrLuUflpuVzMXsC9gscGoW5xNRBenaQ/edit?usp=sharing?rm=minimal",
+      nwas: "https://docs.google.com/spreadsheets/d/1jrBre-GaAo8JqG6NYuTUrptcIRrj3msLniJk5hB_D4c/edit?usp=sharing?rm=minimal",
+      ipds: "https://docs.google.com/spreadsheets/d/1FUeIbGBb4uMcKrJECd-yPcjC8z2BG7pl6R8XmIGWSK0/edit?usp=sharing?rm=minimal",
+      umum: "https://docs.google.com/spreadsheets/d/1_Fs-LrcDx6a_L4oJawoLFdn3pRH3K_nL9UkvGkm22Xg/edit?usp=sharing?rm=minimal"
+    };
+
+    const sheetTitles = {
+      buku_kendali: "BUKU KENDALI SURAT KELUAR",
+      monado_pa: "MONADO PA (PERENCANAAN & ANGGARAN)",
+      sosial: "MONADO TIM SOSIAL",
+      produksi: "MONADO TIM PRODUKSI",
+      distribusi: "MONADO TIM DISTRIBUSI",
+      nwas: "MONADO TIM NWAS",
+      ipds: "MONADO TIM IPDS",
+      umum: "MONADO TIM UMUM"
+    };
+
+    /**
+     * Berpindah Menu Utama: Dashboard <-> Worksheet
+     */
+    function switchMainTab(tabName) {
+      const viewDashboard = document.getElementById('view-dashboard');
+      const viewWorksheet = document.getElementById('view-worksheet');
+      const btnDashboard = document.getElementById('btn-nav-dashboard');
+      const btnWorksheet = document.getElementById('btn-nav-worksheet');
+
+      if (tabName === 'dashboard') {
+        viewDashboard.classList.remove('hidden');
+        viewDashboard.classList.add('block');
+        viewWorksheet.classList.remove('block', 'flex');
+        viewWorksheet.classList.add('hidden');
+        
+        // Aktifkan Style Button
+        btnDashboard.className = "px-6 py-2 rounded-full font-medium text-sm transition-all bg-blue-600 text-white shadow";
+        btnWorksheet.className = "px-6 py-2 rounded-full font-medium text-sm transition-all text-gray-300 hover:text-white";
+        
+        // Tutup sheet yang terbuka secara otomatis jika kembali ke dashboard
+        closeGoogleSheet();
+      } else {
+        viewDashboard.classList.remove('block');
+        viewDashboard.classList.add('hidden');
+        viewWorksheet.classList.remove('hidden');
+        viewWorksheet.classList.add('flex');
+
+        // Aktifkan Style Button
+        btnWorksheet.className = "px-6 py-2 rounded-full font-medium text-sm transition-all bg-blue-600 text-white shadow";
+        btnDashboard.className = "px-6 py-2 rounded-full font-medium text-sm transition-all text-gray-300 hover:text-white";
+      }
+    }
+
+    /**
+     * Membuka Iframe Google Sheet berdasarkan sub-menu yang dipilih
+     */
+    function openGoogleSheet(menuKey) {
+      const menuGrid = document.getElementById('worksheet-menu-grid');
+      const frameContainer = document.getElementById('spreadsheet-frame-container');
+      const iframe = document.getElementById('sheet-iframe');
+      const titleElement = document.getElementById('current-sheet-title');
+      const externalLink = document.getElementById('external-sheet-link');
+
+      // Ambil URL & Judul yang sesuai
+      const targetUrl = sheetUrls[menuKey] || "#";
+      const targetTitle = sheetTitles[menuKey] || "Google Sheet View";
+
+      // Set atribut Konten
+      titleElement.innerText = targetTitle;
+      externalLink.href = targetUrl.replace('?rm=minimal', '').replace('&rm=minimal', ''); // Link eksternal bersih tanpa minimal UI
+      iframe.src = targetUrl;
+
+      // Animasi UI Switching
+      menuGrid.classList.remove('block');
+      menuGrid.classList.add('hidden');
+      frameContainer.classList.remove('hidden');
+    }
+
+    /**
+     * Menutup tampilan Iframe dan kembali ke Menu Pilihan Utama
+     */
+    function closeGoogleSheet() {
+      const menuGrid = document.getElementById('worksheet-menu-grid');
+      const frameContainer = document.getElementById('spreadsheet-frame-container');
+      const iframe = document.getElementById('sheet-iframe');
+
+      iframe.src = ""; // Clear iframe agar menghemat memori browser
+      frameContainer.classList.add('hidden');
+      menuGrid.classList.remove('hidden');
+      menuGrid.classList.add('block');
+    }
+  </script>
+</body>
+</html>
